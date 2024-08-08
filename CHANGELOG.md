@@ -19,7 +19,7 @@ class in classes.py if the api_key.env file doesn't exist
 ## PATCH: [1.1.2] - 2024-08-08
 - Updated README.md file with more simplicity and images
 - Added conventions for repository structure
-- Added an assets folder containing images and installation instructions
+- Added an assets folder containing images
 - Fixed a bug in AOS where a connection error was returned after too many API requests
 
 # Scheduled Updates
