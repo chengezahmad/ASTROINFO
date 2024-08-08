@@ -11,7 +11,7 @@ from astroquery.jplhorizons import Horizons
 from matplotlib import use
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg, NavigationToolbar2Tk
 
-from main.src.classes import Asteroid
+from src.classes import Asteroid
 use('TkAgg')
 
 # Create a coords function to get heliocentric coordinates of an object

@@ -27,10 +27,10 @@ class Asteroid:
 
             if instance.SBDB['object']['neo']:
                 try:
-                    dotenv_path = find_dotenv('../../priv_api_key.env', raise_error_if_not_found=True)
+                    dotenv_path = find_dotenv('../priv_api_key.env', raise_error_if_not_found=True)
                 except Exception:
                     try:
-                        dotenv_path = find_dotenv('../../api_key.env', raise_error_if_not_found=True)
+                        dotenv_path = find_dotenv('../api_key.env', raise_error_if_not_found=True)
                     except Exception:
                         print("No api_key.env file found; please visit https://github.com/chengezahmad/ASTROINFO to see where to replace it")
                 load_dotenv(dotenv_path)

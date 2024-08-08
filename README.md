@@ -44,8 +44,10 @@ API Keys with NASA
 </h2>
 This program uses NASA APIs, which means it requires an API key to use. I don't want to leak my
 own API key out, so you should get your own. Use the link <a href="https://api.nasa.gov/">here</a>
-to go to NASA's website and generate an API key that will be emailed directly to you. After that,
-you're going to need to go into the <b>api_key.env</b> file and replace DEMO_KEY with your own API key. 
+to go to NASA's website and generate an API key that will be emailed directly to you. 
+
+After that,
+you're going to need to find  the <b>api_key.env</b> file in the ASTROINFO folder and replace DEMO_KEY with your own API key. 
 You don't have to do this process and can just run the code as it is because DEMO_KEY still works as an API key
 , but I wouldn't reccomend this because you can only use it 40 times per hour, whereas using an actual
 API key you can use it 1,000 times per hour.
