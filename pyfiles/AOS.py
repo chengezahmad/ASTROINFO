@@ -5,6 +5,7 @@ from warnings import filterwarnings
 import astropy.units as u
 import customtkinter as ctk
 import matplotlib.pyplot as plt
+import requests.exceptions
 from astropy.time import Time
 from astroquery.jplhorizons import Horizons
 from matplotlib import use
@@ -280,54 +281,58 @@ class ORBITALSIM(ctk.CTk):
         invalid_objs = list()
         self.bodies.clear()
         self.create_defaults()
-        for id in obj_str.splitlines():
-            try:
-                if id == "" or id.isspace():
-                    pass
-                else:
-                    asteroid = Asteroid(id)
-                    # Assume the asteroid has a nickname (e.g. 4 VESTA, or 99942 APOPHIS)
-                    IAU = asteroid.identifiers['SPKID']
-                    full_name = asteroid.identifiers['full name']
-                    first_space_index = full_name.index(' ')
-                    if int(IAU) <= 4_000_000:
-                        try:
-                            second_space_index = full_name.index(' ', first_space_index + 1)
-                            third_space_index = full_name.index(' ', second_space_index + 1)
-                        except Exception:
-                            second_space_index = None
-
-                        if second_space_index is not None:
-                            name = full_name[first_space_index + 1:second_space_index]
-                        else:
-                            name = full_name[:first_space_index]
-                    else:
-                        name = asteroid.identifiers['full name']
-                    try:
-                        if asteroid.physical_properties['diameter']['km'] != 'Unavailable':
-                            radius_km = float(asteroid.physical_properties['diameter']['km']) / 2
-                        else:
-                            radius_km = 1  # Average
-                    except KeyError:
-                        radius_km = 1  # Average
-
-                    if radius_km is not None:
-                        object_data[str(IAU)] = {'radius': float(radius_km), 'name': name, 'fullname': full_name}
-                    else:
-                        object_data[str(IAU)] = {'radius': None, 'name': name, 'fullname': full_name}
-
-            except (AttributeError, KeyError, ValueError):
-                pass
-
-        for iau, dictionary in object_data.items():
-            if dictionary['radius'] is not None:
+        try:
+            for id in obj_str.splitlines():
                 try:
-                    self.add_body(horizons_id=dictionary['name'], color='grey', name=dictionary['fullname'], radius_km=dictionary['radius'], id_type='smallbody')
-                except ValueError:
-                    try:
-                        self.add_body(horizons_id=iau, color='grey', name=dictionary['fullname'], radius_km=dictionary['radius'], id_type='smallbody')
-                    except ValueError:
+                    if id == "" or id.isspace():
                         pass
+                    else:
+                        asteroid = Asteroid(id)
+                        # Assume the asteroid has a nickname (e.g. 4 VESTA, or 99942 APOPHIS)
+                        IAU = asteroid.identifiers['SPKID']
+                        full_name = asteroid.identifiers['full name']
+                        first_space_index = full_name.index(' ')
+                        if int(IAU) <= 4_000_000:
+                            try:
+                                second_space_index = full_name.index(' ', first_space_index + 1)
+                                third_space_index = full_name.index(' ', second_space_index + 1)
+                            except Exception:
+                                second_space_index = None
+
+                            if second_space_index is not None:
+                                name = full_name[first_space_index + 1:second_space_index]
+                            else:
+                                name = full_name[:first_space_index]
+                        else:
+                            name = asteroid.identifiers['full name']
+                        try:
+                            if asteroid.physical_properties['diameter']['km'] != 'Unavailable':
+                                radius_km = float(asteroid.physical_properties['diameter']['km']) / 2
+                            else:
+                                radius_km = 1  # Average
+                        except KeyError:
+                            radius_km = 1  # Average
+
+                        if radius_km is not None:
+                            object_data[str(IAU)] = {'radius': float(radius_km), 'name': name, 'fullname': full_name}
+                        else:
+                            object_data[str(IAU)] = {'radius': None, 'name': name, 'fullname': full_name}
+
+                except (AttributeError, KeyError, ValueError):
+                    pass
+
+            for iau, dictionary in object_data.items():
+                if dictionary['radius'] is not None:
+                    try:
+                        self.add_body(horizons_id=dictionary['name'], color='grey', name=dictionary['fullname'], radius_km=dictionary['radius'], id_type='smallbody')
+                    except ValueError:
+                        try:
+                            self.add_body(horizons_id=iau, color='grey', name=dictionary['fullname'], radius_km=dictionary['radius'], id_type='smallbody')
+                        except ValueError:
+                            pass
+        except requests.exceptions.ConnectionError:
+            self.add_inputted_objects()
+
 class TOPLEVELORBITALSIM(ctk.CTkToplevel):
     def __init__(self, time: None | str = None):
         """
