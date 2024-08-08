@@ -16,6 +16,12 @@
 - Added an error message that occurs during the new method of the asteroid
 class in classes.py if the api_key.env file doesn't exist
 
+## PATCH: [1.1.2] - 2024-08-08
+- Updated README.md file with more simplicity and images
+- Added conventions for repository structure
+- Added an assets folder containing images and installation instructions
+- Fixed a bug in AOS where a connection error was returned after too many API requests
+
 # Scheduled Updates
 
 ## MAJOR: [1.2.0] - Mid-August

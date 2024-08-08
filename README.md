@@ -1,7 +1,7 @@
 # ASTROINFO
 
 <p>
-ASTROINFO is a program built to convey information 
+ASTROINFO is a program built to display information 
 on asteroids and other smallbodies. It sources data from 
 NASA's Smallbody Database, NeoWs API, and CAD API to get
 information on properties, orbital info, and approach dates.
@@ -9,26 +9,23 @@ information on properties, orbital info, and approach dates.
 <h2>
 ASTROINFO.py
 </h2>
+<img src="https://raw.githubusercontent.com/chengezahmad/ASTROINFO/master/assets/ASTROINFO_window.png" alt="ASTROINFO Window">
 <p>
-The main file, ASTROINFO.py, uses customtkinter as a geometry manager, 
-which gives it a modern feel. How it works is that whenever you enter an
-asteroid ID and press the GO button, the asteroid ID is put in as an argument
-for an Asteroid class in the classes.py file. If the asteroid is a Near Earth Object
-(it comes close to Earth often), then it is moved to the NearEarthObject class.
-The classes have properties that contain info on their physical properties,
-orbital properties, identifiers, and close approaches.
+ASTROINFO.py is the main file. Enter an asteroid ID to see its physical properties, orbital properties, 
+and approaches in the customtkinter window.
+
+You can also enter two dates in the "Find Close Approaches by Date Range" section to find asteroid approaches to Earth
+within that range.
 </p>
 
 <h2>
 AOS.py
 </h2>
+<img src="https://raw.githubusercontent.com/chengezahmad/ASTROINFO/master/assets/AOS_window.png" alt="AOS Window">
 <p>
-AOS (ASTROINFO Orbital Simulation) is an orbital simulation made using customtkinter.
-It uses a matplotlib graph as a surface for the planets to be displayed in a 2D manner.
-You can control the simulation by stepping forward a certain amount of hours (set by the user
-at the bottom) OR you can skip to a certain date (at the top). You can add small body objects
-using the large text box in the middle. To add Apophis, for example, you can type in 99942 and
-click "ADD OBJECTS" to add it.
+AOS.py (ASTROINFO Orbital Simulation) is a simulation that displays the positions of celestial bodies at a given time. 
+
+Soon, in version 1.2.0, AOS will be linked to ASTROINFO to display an approach that the user may be interested in.
 </p>
 <h2>
 classes.py
@@ -40,23 +37,30 @@ of the Asteroid class, it gets new properties that can be used to get data on th
 the user put in.
 </p>
 <h2>
-API Keys with NASA
+NASA API Keys
 </h2>
 This program uses NASA APIs, which means it requires an API key to use. I don't want to leak my
-own API key out, so you should get your own. Use the link <a href="https://api.nasa.gov/">here</a>
+own API key out, so I would heavily reccommend get your own. 
+
+Use the link <a href="https://api.nasa.gov/">here</a>
 to go to NASA's website and generate an API key that will be emailed directly to you. 
 
-After that,
-you're going to need to find  the <b>api_key.env</b> file in the ASTROINFO folder and replace DEMO_KEY with your own API key. 
-You don't have to do this process and can just run the code as it is because DEMO_KEY still works as an API key
-, but I wouldn't reccomend this because you can only use it 40 times per hour, whereas using an actual
-API key you can use it 1,000 times per hour.
+<img src="https://raw.githubusercontent.com/chengezahmad/ASTROINFO/master/assets/api_key_visual.png" alt="API Key Instructions">
+
+To put your API key into the program:
+- Locate the api_key.env file in the ASTROINFO folder
+- Open the file using your file editor
+- Replace DEMO_KEY with your API key
+
+NOTE: DEMO_KEY will work as an API key, but it only can be used 40 times per hour. However,
+if you get your own API key, then you will be able to use it 1,000 times an hour.
+
 
 ## Usage Examples
-ASTROINFO could be used for anything related to asteroids. If you want to see just how close an asteroid gets
-during a close approach to Earth, you can do that in AOS. If you want to get physical properties, then you could
-use ASTROINFO. If you want to make your own custom code, you can use the classes file as long as you follow the rules
-associated with the Creative Commons Attribution 4.0 International License. See the link under 'License' for more information.
+ASTROINFO could be used for anything related to asteroids and/or smallbodies. For instance:
+- Use AOS to evaluate the danger of a future close approach of an asteroid
+- Use ASTROINFO to get the diameter of an asteroid in kilometers
+- Use classes for your own code (remember to follow the license guidelines)
 
 ##  License
 This work is licensed under the [Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/).
