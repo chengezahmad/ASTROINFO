@@ -49,7 +49,6 @@ class Asteroid:
 
     def __init__(self, identifier):
         """Represents any asteroid. If it is a NEO, move it to the NearEarthObject class."""
-        pass
 
     @property
     def physical_properties(self):

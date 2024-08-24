@@ -278,7 +278,6 @@ class ORBITALSIM(ctk.CTk):
         """Adds the objects that were put into the text box by the user."""
         obj_str = self.object_input.get("1.0", ctk.END)
         object_data = dict()
-        invalid_objs = list()
         self.bodies.clear()
         self.create_defaults()
         try:
@@ -295,7 +294,7 @@ class ORBITALSIM(ctk.CTk):
                         if int(IAU) <= 4_000_000:
                             try:
                                 second_space_index = full_name.index(' ', first_space_index + 1)
-                                third_space_index = full_name.index(' ', second_space_index + 1)
+                                full_name.index(' ', second_space_index + 1)
                             except Exception:
                                 second_space_index = None
 
@@ -518,7 +517,6 @@ class TOPLEVELORBITALSIM(ctk.CTkToplevel):
         """Adds the objects that were put into the text box by the user."""
         obj_str = self.object_input.get("1.0", ctk.END)
         object_data = dict()
-        invalid_objs = list()
         self.bodies.clear()
         self.create_defaults()
         for id in obj_str.splitlines():
@@ -534,7 +532,7 @@ class TOPLEVELORBITALSIM(ctk.CTkToplevel):
                     if int(IAU) <= 4_000_000:
                         try:
                             second_space_index = full_name.index(' ', first_space_index + 1)
-                            third_space_index = full_name.index(' ', second_space_index + 1)
+                            full_name.index(' ', second_space_index + 1)
                         except Exception:
                             second_space_index = None
 
@@ -758,7 +756,6 @@ class FRAMEORBITALSIM(ctk.CTkFrame):
         """Adds the objects that were put into the text box by the user."""
         obj_str = self.object_input.get("1.0", ctk.END)
         object_data = dict()
-        invalid_objs = list()
         self.bodies.clear()
         self.create_defaults()
         for id in obj_str.splitlines():
@@ -774,7 +771,7 @@ class FRAMEORBITALSIM(ctk.CTkFrame):
                     if int(IAU) <= 4_000_000:
                         try:
                             second_space_index = full_name.index(' ', first_space_index + 1)
-                            third_space_index = full_name.index(' ', second_space_index + 1)
+                            full_name.index(' ', second_space_index + 1)
                         except Exception:
                             second_space_index = None
 
