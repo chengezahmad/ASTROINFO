@@ -24,6 +24,6 @@ class in classes.py if the api_key.env file doesn't exist
 
 # Scheduled Updates
 
-## MAJOR: [1.2.0] - Mid-August
+## MAJOR: [1.2.0] - Mid-December
 - Link ASTROINFO.py to AOS.py with more functionality, such as adding a button to display an approach in AOS
 - Heavy simplification and performance improvements
